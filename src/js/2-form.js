@@ -24,7 +24,13 @@ const feedbackForm = document.querySelector('.feedback-form');
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
  });
 
- feedbackForm.addEventListener('submit', () => {
+ feedbackForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if(!formData.email || !formData.message) {
+    alert('Fill please all fields');
+    return;
+  }
+  console.log(formData);
   localStorage.removeItem(localStorageKey);
   feedbackForm.reset();
  });
