@@ -6,7 +6,7 @@ const formData = {
 
 const feedbackForm = document.querySelector('.feedback-form');
 
- document.querySelector('.feedback-form').addEventListener('load', () => {
+ const loadDocument = () => {
   const formDataTmp = JSON.parse(localStorage.getItem(localStorageKey));
   if(formDataTmp){
     formData.email = formDataTmp.email;
@@ -14,11 +14,11 @@ const feedbackForm = document.querySelector('.feedback-form');
   }
 
   for(const key in formData) {
-    feedbackForm.elements[key] = formData[key];
+    feedbackForm.elements[key].value = formData[key];
   }
- });
+ }
 
- feedbackForm.addEventListener('change', (event) => {
+ feedbackForm.addEventListener('input', (event) => {
   const { target: element } = event;
   formData[element.name] = element.value;
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
@@ -34,3 +34,5 @@ const feedbackForm = document.querySelector('.feedback-form');
   localStorage.removeItem(localStorageKey);
   feedbackForm.reset();
  });
+
+ loadDocument();
