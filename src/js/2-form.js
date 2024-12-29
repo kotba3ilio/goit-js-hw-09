@@ -33,6 +33,8 @@ const feedbackForm = document.querySelector('.feedback-form');
   console.log(formData);
   localStorage.removeItem(localStorageKey);
   feedbackForm.reset();
+  formData.email = '';
+  formData.message = '';
  });
 
  loadDocument();
